@@ -13,7 +13,6 @@ tokenizer = AutoTokenizer.from_pretrained("cyberagent/calm2-7b-chat")
 streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
 
 def llm(question):
-    prompt = f"""USER:{question}\nASSISTANT: """
     token_ids = tokenizer.encode(prompt, return_tensors="pt")
     output_ids = model.generate(
         input_ids=token_ids.to(model.device),
@@ -25,6 +24,8 @@ def llm(question):
 
     response = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     return response
+    txt2 = input("質問を入力してください:")
+    lim(txt)
 
 txt = input("質問を入力してください:")
 llm(txt)
